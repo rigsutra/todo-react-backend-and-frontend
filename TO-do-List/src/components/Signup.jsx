@@ -1,6 +1,6 @@
 import { useState } from "react";
-import "./Signup.css";
-import Axiom from 'axiom';
+
+import Axiom from 'axios';
 
 const Signup = () => {
   const [input, setInput] = useState({
@@ -9,15 +9,23 @@ const Signup = () => {
     password: "",
   });
 
-  function HandleClick(e) {
-    e.preventdefault();
-    Axiom.port("https://localhost:3000/auth/Signup",{input});
+  function handleClick(e) {
+    e.preventDefault(); // Correct typo and casing
+    Axiom.post("https://localhost:3000/auth/Signup", input) // Use axios.post
+      .then(response => {
+        console.log(response.data);
+        // Handle response or update UI as needed
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        // Handle error or update UI as needed
+      });
   }
   return (
     <div className="signup-container">
-      <form onSubmit={handleSubmit} action="">
+      <form  >
         <div className="SignUp">
-          <h3 className="SignUP-name">SignUp</h3>
+          <h3 className="Signup-name">SignUp</h3>
           <div className="line"></div>
           <div className="Card">
             <label htmlFor="Username"> Username</label>
@@ -37,9 +45,9 @@ const Signup = () => {
               name="email"
               value={input.email}
               onChange={(e) =>
-                setInput({ ...input, [e.target.email]: e.target.value })
+                setInput({ ...input, [e.target.name]: e.target.value })
               }
-              type="Email"
+              type="email"
               placeholder="Email"
             />
 
@@ -49,20 +57,19 @@ const Signup = () => {
               name="password"
               value={input.password}
               onChange={(e) =>
-                setInput({ ...input, [e.target.password]: e.target.value })
+                setInput({ ...input, [e.target.name]: e.target.value })
               }
-              type="Password"
+              type="password"
               placeholder="password"
             />
             <div>
-              <button className="signInBtn" onClick={HandleClick}>
-                {" "}
+              <button className="signInBtn" type="submit" onClick={handleClick}>
                 Sign In
               </button>
             </div>
           </div>
           <p>
-            Already have an Account{" "}
+            Already have an Account
             <a href="TO-do-List\src\components\SignIn.jsx">SignIn</a>
           </p>
         </div>
