@@ -14,12 +14,14 @@ const userSchema=new mongoose.Schema({
     
     password:{
         type:String,
-        require:true
+        require:true,
+        
     },
 
     confirmPassword:{
         type:String,
-        require:true
+        require:true,
+       
     },
 
     todo:[{
