@@ -1,6 +1,6 @@
 const express=require("express");
-const {signUp,login,updatePassword} =require("../controller/userController");
-const userModel = require("../model/userModel");
+const {signUp,login,updatePassword} =require("../../controller/userController");
+const userModel = require("../../model/userModel");
 userRouter=express.Router();
 
 userRouter.post("/create",signUp);
