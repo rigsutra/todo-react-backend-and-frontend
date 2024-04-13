@@ -1,75 +1,69 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import Axiom from 'axios';
+import axios from "axios";
+import "./Signup.css";
 
 const Signup = () => {
-  const [input, setInput] = useState({
-    name: "",
-    email: "",
-    password: "",
-  });
+  const [Username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  function handleClick(e) {
+  const handleClick = (e) => {
     e.preventDefault(); // Correct typo and casing
-    Axiom.post("https://localhost:3000/auth/Signup", input) // Use axios.post
-      .then(response => {
-        console.log(response.data);
+    axios.post("https://localhost:3000/auth/Signup", {
+      Username,
+      email,
+      password,
+    }) // Use axios.post
+      .then((response) => {
+        console.log(response);
         // Handle response or update UI as needed
       })
-      .catch(error => {
-        console.error('Error:', error);
+      .catch((error) => {
+        console.error("Error:", error);
         // Handle error or update UI as needed
       });
   }
   return (
     <div className="signup-container">
-      <form  >
+      <form className="sign-up-form" onSubmit={handleClick} >
         <div className="SignUp">
           <h3 className="Signup-name">SignUp</h3>
           <div className="line"></div>
-          <div className="Card">
-            <label htmlFor="Username"> Username</label>
-            <input
-              name="name"
-              value={input.name}
-              onChange={(e) =>
-                setInput({ ...input, [e.target.name]: e.target.value })
-              }
-              type="text"
-              placeholder="Name"
-            />
 
-            <label htmlFor="email">Email</label>
+          <label htmlFor="Username"> Username</label>
+          <input
+            value={Username}
+            onChange={(e) => setUsername(e.target.value)}
+            type="text"
+            placeholder="Username"
+          />
 
-            <input
-              name="email"
-              value={input.email}
-              onChange={(e) =>
-                setInput({ ...input, [e.target.name]: e.target.value })
-              }
-              type="email"
-              placeholder="Email"
-            />
+          <label htmlFor="email">Email</label>
 
-            <label htmlFor="password">Password</label>
+          <input
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            type="email"
+            placeholder="Email"
+          />
 
-            <input
-              name="password"
-              value={input.password}
-              onChange={(e) =>
-                setInput({ ...input, [e.target.name]: e.target.value })
-              }
-              type="password"
-              placeholder="password"
-            />
-            <div>
-              <button className="signInBtn" type="submit" onClick={handleClick}>
-                Sign In
-              </button>
-            </div>
+          <label htmlFor="password">Password</label>
+
+          <input
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            type="password"
+            placeholder="password"
+          />
+          <div>
+            <button type="submit">
+              Sign up
+            </button>
           </div>
+
           <p>
-          Already have an Account? <Link to="/signin">SignIn</Link>
+            Already have an Account? <Link to="/signin">SignIn</Link>
           </p>
         </div>
       </form>

@@ -7,9 +7,9 @@ const jwt=require("jsonwebtoken");
 exports.signUp= async(req,res)=>{
 
     try{
-        const {name, email, password ,confirmPassword}=req.body;
+        const {Username, email, password ,confirmPassword}=req.body;
 
-        if(!name || !email || !password){
+        if(!Username || !email || !password){
             return res.json({
                 success:false,
                 message:"few data field is empty"
@@ -36,7 +36,7 @@ exports.signUp= async(req,res)=>{
         const newPass= await bcrypt.hash(password,10);
 
         const user= new userModel({
-            name,
+            Username,
             email,
             password:newPass,
             confirmPassword
