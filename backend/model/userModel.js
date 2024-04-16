@@ -1,7 +1,7 @@
 const mongoose=require("mongoose");
 
 const userSchema=new mongoose.Schema({
-    Username:{
+    name:{
     type:String,
     require:true
     },
@@ -18,7 +18,12 @@ const userSchema=new mongoose.Schema({
         
     },
 
-    
+    confirmPassword:{
+        type:String,
+        require:true,
+       
+    },
+
     todo:[{
         type:mongoose.Schema.ObjectId,
         ref:"todoModel"
@@ -26,5 +31,8 @@ const userSchema=new mongoose.Schema({
 
 });
 
+userSchema.pre("save",function(){
+    this.confirmPassword=undefined
+});
 const userModel=mongoose.model("userModel",userSchema);
 module.exports=userModel;

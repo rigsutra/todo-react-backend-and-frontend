@@ -1,17 +1,14 @@
 const express=require("express");
-const {SignUp,Signin,updatePassword} =require("../../controller/userController");
-const userModel = require("../../model/userModel");
+const {signUp,login,updatePassword} =require("../controller/userController");
+const userModel = require("../model/userModel");
 userRouter=express.Router();
 
-userRouter.post("/Signup",SignUp);
-userRouter.post("/Signin",Signin);
+userRouter.post("/create",signUp);
+userRouter.post("/login",login);
 
-//userRouter.patch("/updatePassword",updatePassword);
+userRouter.patch("/updatePassword",updatePassword);
 
 // userRouter.patch("/updatePassword")
 
 
 module.exports=userRouter;
-
-
-
