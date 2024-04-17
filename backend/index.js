@@ -4,8 +4,8 @@ const cookieParser=require("cookie-parser");
 const dotenv = require("dotenv");
 
 dotenv.config();
-import userModel from "./model/userModel";
-const userRouter=require("./router/userRouter");
+const userModel = require("./model/userModel.js");
+const userRouter=require("./router/userRouter.js");
 const dbConnect=require("./config/dataBase");
 
 
@@ -14,9 +14,8 @@ const app=express();
 app.use(cookieParser())
 app.use(express.json());
 
+userModel();
 
-mongoose.connect('mongodb+srv://ashishsingh92003:Ashish401@to-do-list-app.wpcjzun.mongodb.net/')
-app.use('/auth', userRouter)
 
 // app.use("/todo",todoRouter);
 // app.use("/task",taskRouter);

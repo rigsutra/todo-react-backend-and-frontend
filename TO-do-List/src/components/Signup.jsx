@@ -11,11 +11,11 @@ const Signup = () => {
 
   const handleClick = (e) => {
     e.preventDefault(); // Correct typo and casing
-    axios
-      .post("https://localhost:3000/auth/Signup", {
+    axios.post("localhost:4000/user/Signup", {
         Username,
         email,
         password,
+        repassword,
       }) // Use axios.post
       .then((response) => {
         console.log(response);

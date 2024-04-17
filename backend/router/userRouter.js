@@ -1,10 +1,10 @@
 const express=require("express");
-const {signUp,login,updatePassword} =require("../controller/userController");
+const {SignUp,Signin,updatePassword} =require("../controller/userController");
 const userModel = require("../model/userModel");
 userRouter=express.Router();
 
-userRouter.post("/create",signUp);
-userRouter.post("/login",login);
+userRouter.post("/Signup",SignUp);
+userRouter.post("/Signin",Signin);
 
 userRouter.patch("/updatePassword",updatePassword);
 
