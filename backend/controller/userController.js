@@ -4,60 +4,60 @@ const jwt=require("jsonwebtoken");
 
 
 // signUp controller 
-exports.SignUp= async(req,res)=>{
+exports.SignUp = async (req, res) => {
+    try {
+        const { Username, email, password, confirmPassword } = req.body;
 
-    try{
-        const {Username, email, password ,confirmPassword}=req.body;
-
-        if(!Username || !email || !password){
-            return res.json({
-                success:false,
-                message:"few data field is empty"
+        if (!Username || !email || !password || !confirmPassword) {
+            return res.status(400).json({
+                success: false,
+                message: "Please fill in all fields"
             });
         }
 
-        if(password !=confirmPassword){
-            return res.json({
-                success:false,
-                message:"password and confirm are not same"
+        if (password !== confirmPassword) {
+            return res.status(400).json({
+                success: false,
+                message: "Passwords do not match"
             });
         }
 
-        const oldUser=await userModel.findOne({email:email});
-
-        if(oldUser){
-            return res.json({
-                success:false,
-                message:"User already present"
-            })
-
+        // Check if user already exists
+        const oldUser = await userModel.findOne({ email: email });
+        if (oldUser) {
+            return res.status(400).json({
+                success: false,
+                message: "User already exists"
+            });
         }
 
-        const newPass= await bcrypt.hash(password,10);
+        // Hash the password
+        const hashedPassword = await bcrypt.hash(password, 10);
 
-        const user= new userModel({
+        // Create a new user instance
+        const newUser = new userModel({
             Username,
             email,
-            password:newPass,
-            confirmPassword
-        })
+            password: hashedPassword,
+            confirmPassword // Make sure to handle confirmPassword properly in the schema if needed
+        });
 
-        await user.save();
+        // Save the new user to the database
+        await newUser.save();
 
-        return res.json({
-            success:true,
-            message:"user register successful"
-        })
-
+        return res.status(201).json({
+            success: true,
+            message: "User registered successfully"
+        });
+    } catch (error) {
+        console.error("Error:", error);
+        return res.status(500).json({
+            success: false,
+            message: "Internal server error"
+        });
     }
-    catch(err){
-        return res.json({
-            success:false,
-            message:err.message
-        })
-    }
+};
 
-}
 
 // login controller 
 exports.Signin=async(req,res)=>{

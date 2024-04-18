@@ -29,7 +29,7 @@ const userSchema=new mongoose.Schema({
         ref:"todoModel"
     }]
 
-});
+},{ collection: "Signup" });
 
 userSchema.pre("save",function(){
     this.confirmPassword=undefined

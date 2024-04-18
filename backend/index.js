@@ -2,6 +2,7 @@ const express=require("express");
 const mongoose = require("mongoose")
 const cookieParser=require("cookie-parser");
 const dotenv = require("dotenv");
+const cors=require('cors')
 
 dotenv.config();
 const userModel = require("./model/userModel.js");
@@ -13,13 +14,13 @@ dbConnect();
 const app=express();
 app.use(cookieParser())
 app.use(express.json());
-
+app.use(cors());
 userModel();
 
 
 // app.use("/todo",todoRouter);
 // app.use("/task",taskRouter);
-
+app.use("/user", userRouter);
 
 const Port=process.env.PORT || 4000;
 

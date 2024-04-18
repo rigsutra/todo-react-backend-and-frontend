@@ -7,15 +7,16 @@ const Signup = () => {
   const [Username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [repassword, setRepassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const handleClick = (e) => {
     e.preventDefault(); // Correct typo and casing
-    axios.post("localhost:4000/user/Signup", {
+    axios
+      .post("http://localhost:4000/user/Signup", {
         Username,
         email,
         password,
-        repassword,
+        confirmPassword,
       }) // Use axios.post
       .then((response) => {
         console.log(response);
@@ -59,11 +60,11 @@ const Signup = () => {
             placeholder="password"
           />
 
-          <label htmlFor="password">Repassword</label>
+          <label htmlFor="password">confirmPassword</label>
 
           <input
-            value={repassword}
-            onChange={(e) => setRepassword(e.target.value)}
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
             type="password"
             placeholder="Repassword"
           />
