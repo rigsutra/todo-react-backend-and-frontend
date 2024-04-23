@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./Signup.css";
 
@@ -9,22 +9,24 @@ const Signup = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
+  const navigate = useNavigate();
+
   const handleClick = (e) => {
-    e.preventDefault(); // Correct typo and casing
+    e.preventDefault();
     axios
       .post("http://localhost:4000/user/Signup", {
         Username,
         email,
         password,
         confirmPassword,
-      }) // Use axios.post
+      })
       .then((response) => {
-        console.log(response);
-        // Handle response or update UI as needed
+        if (response.data.status) {
+          navigate("/Signin");
+        }
       })
       .catch((error) => {
         console.error("Error:", error);
-        // Handle error or update UI as needed
       });
   };
   return (
@@ -34,7 +36,7 @@ const Signup = () => {
           <h3 className="Signup-name">SignUp</h3>
           <div className="line"></div>
 
-          <label htmlFor="Username"> Username</label>
+          <label htmlFor="Username">Username</label>
           <input
             value={Username}
             onChange={(e) => setUsername(e.target.value)}
@@ -83,3 +85,4 @@ const Signup = () => {
 };
 
 export default Signup;
+

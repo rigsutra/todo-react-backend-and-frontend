@@ -1,11 +1,14 @@
 import { useState } from "react";
 import "./Signin.css";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function SignIn() {
 
   const [email , setEmail] = useState("");
   const [password , setPassword] = useState("");
+
+  const NavigateTo = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -14,7 +17,13 @@ function SignIn() {
       password
      } )
      .then((response) => {
-      console.log(response);
+      if(response.data.success == true){
+        console.log("login Success");
+        NavigateTo('/');
+      }
+      else{
+        console.log(response.data.message);
+      }
      })
      .catch((error) =>{
       console.log("error", error);
@@ -25,8 +34,6 @@ function SignIn() {
 
   return (
     <div className="SignIn">
-     
-     
       <form action="" className="sign-in-form" onSubmit={handleSubmit} >
       <h3 className="SignIn-name">SignIn</h3>
       <div className="lineup"></div>
@@ -46,7 +53,7 @@ function SignIn() {
         </div>
         <div>
           <div className="line"></div>
-          <p>Doesn't have Account <a href="/Signup">Signup</a></p>
+          <p>Do not have Account <a href="/Signup">Signup</a></p>
         </div>
       </form>
     </div>
@@ -54,3 +61,5 @@ function SignIn() {
 }
 
 export default SignIn;
+
+  

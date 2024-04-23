@@ -68,13 +68,13 @@ exports.Signin=async(req,res)=>{
         const user=await userModel.findOne({email:email});
 
         if(!user){
-            return res.status(404).json({
+            return res.json({
                 success:false,
                 message:"User not found"
             })
         }
 
-        if( await bcrypt.compare(password, user.password)){
+        if( await bcrypt.compareSync(password, user.password)){
             const payload={
                 email:user.email,
                 id:user.id
