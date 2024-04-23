@@ -8,7 +8,4 @@ userRouter.post("/Signin",Signin);
 
 userRouter.patch("/updatePassword",updatePassword);
 
-// userRouter.patch("/updatePassword")
-
-
 module.exports=userRouter;

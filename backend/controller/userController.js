@@ -9,14 +9,14 @@ exports.SignUp = async (req, res) => {
         const { Username, email, password, confirmPassword } = req.body;
 
         if (!Username || !email || !password || !confirmPassword) {
-            return res.status(400).json({
+            return res.json({
                 success: false,
                 message: "Please fill in all fields"
             });
         }
 
         if (password !== confirmPassword) {
-            return res.status(400).json({
+            return res.json({
                 success: false,
                 message: "Passwords do not match"
             });
@@ -25,7 +25,7 @@ exports.SignUp = async (req, res) => {
         // Check if user already exists
         const oldUser = await userModel.findOne({ email: email });
         if (oldUser) {
-            return res.status(400).json({
+            return res.json({
                 success: false,
                 message: "User already exists"
             });
@@ -45,13 +45,13 @@ exports.SignUp = async (req, res) => {
         // Save the new user to the database
         await newUser.save();
 
-        return res.status(201).json({
+        return res.json({
             success: true,
             message: "User registered successfully"
         });
     } catch (error) {
         console.error("Error:", error);
-        return res.status(500).json({
+        return res.json({
             success: false,
             message: "Internal server error"
         });

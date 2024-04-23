@@ -21,7 +21,8 @@ const Signup = () => {
         confirmPassword,
       })
       .then((response) => {
-        if (response.data.status) {
+        if (response.data.success == true) {
+          console.log(response.data.message);
           navigate("/Signin");
         }
       })
