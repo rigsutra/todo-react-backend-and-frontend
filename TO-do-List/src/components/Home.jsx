@@ -1,13 +1,14 @@
 
 
-import Cardscomponent from './Cardscomponent.jsx';
+
+import TaskPage from './TaskPage.jsx';
 
 
 
 export default function Home() {
   return (
     <div>
-      <Cardscomponent />
+      <TaskPage />
     </div>
   );
 }
