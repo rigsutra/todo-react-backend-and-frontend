@@ -1,0 +1,108 @@
+.task-card {
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #f9fafb;
+    padding: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .task-input {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center items horizontally */
+  }
+  
+  .input-name {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    text-align: left;
+  }
+  
+  input[type='text'] {
+    width: 90%; /* Adjusted input width */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  
+  .task-input-btns{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            width: 70%;
+           
+
+  }
+
+  .task-input-btn {
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 12px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 40%; /* Adjusted button width */
+  }
+  
+  .task-input-btn:hover {
+    background-color: #45a049;
+  }
+  
+  .task-display-options {
+    display: flex;
+    justify-content: space-evenly;
+  }
+  
+  .task {
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .tasks-names {
+    border: black solid 1px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: left;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 15px;
+    flex-direction: column;
+    margin: 5px;
+  }
+  
+  .tasks-names h2 {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .tasks-names h3 {
+    font-size: 16px;
+    color: #666;
+  }
+  
+  button {
+    cursor: pointer;
+  }
+  
+  .active {
+    background-color: #2196f3;
+    color: #fff;
+    margin: 1px;
+    height: 40px;
+  }
+  
+  .diff:hover {
+    background-color: #0b7dda;
+  }
+  
