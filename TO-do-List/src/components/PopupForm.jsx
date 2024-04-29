@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import './popup.css';
+import axios from 'axios';
 
 // eslint-disable-next-line react/prop-types
 const PopupForm = ({ onSubmit }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [taskName, setTaskName] = useState('');
+  const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
 
   const togglePopup = () => {
@@ -13,12 +14,25 @@ const PopupForm = ({ onSubmit }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const taskData = { taskName, description };
+    axios
+      .post("http://localhost:4000/task/createTask", {
+      title,
+      description
+    }).then((response) => {
+      if (response.data.success == true) {
+        console.log(response.data.message);
+      }
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+    const taskData = { title, description };
     onSubmit(taskData);
-    setTaskName('');
+    setTitle('');
     setDescription('');
     togglePopup();
   };
+
 
   return (
     <>
@@ -40,8 +54,8 @@ const PopupForm = ({ onSubmit }) => {
                 id="taskName"
                 name="taskName"
                 required
-                value={taskName}
-                onChange={(e) => setTaskName(e.target.value)}
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
               />
               <label className="form-label" htmlFor="description">
                 Description:

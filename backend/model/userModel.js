@@ -24,10 +24,10 @@ const userSchema=new mongoose.Schema({
        
     },
 
-    todo:[{
-        type:mongoose.Schema.ObjectId,
-        ref:"todoModel"
-    }]
+    // todo:[{
+    //     type:mongoose.Schema.ObjectId,
+    //     ref:"todoModel"
+    // }]
 
 },{ collection: "Signup" });
 

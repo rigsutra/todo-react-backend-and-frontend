@@ -2,6 +2,7 @@ import { useState } from 'react';
 import './Cardscomponent.css';
 import PopupForm from './PopupForm';
 
+
 const Cardscomponent = () => {
   const [tasks, setTasks] = useState([]);
 
@@ -17,14 +18,14 @@ const Cardscomponent = () => {
 
   return (
     <div className="container">
-      <button className="add-task-button">
+      <h2 className="add-task-button">
         <PopupForm onSubmit={handleTaskSubmission} />
-      </button>
+      </h2>
       <div className="card-container">
         {tasks.map((task, index) => (
           <div key={index} className="card-body">
             <div className='card-details'>
-            <h2 className="card-name-input">{task.taskName}</h2>
+            <h2 className="card-name-input">{task.title}</h2>
             <h3 className="card-description-input">About: {task.description}</h3>
             <p className="card-status-select">Status:</p>
             </div>

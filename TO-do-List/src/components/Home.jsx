@@ -1,14 +1,9 @@
-
-
-
-import TaskPage from './TaskPage.jsx';
-
-
+import CardsComponents from './Cardscomponent.jsx'
 
 export default function Home() {
   return (
     <div>
-      <TaskPage />
+      <CardsComponents />
     </div>
   );
 }

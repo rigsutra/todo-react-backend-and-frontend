@@ -16,11 +16,11 @@ const taskSchema=new mongoose.Schema({
         default:"pending"
     },
 
-    todo:{
-        type:mongoose.Schema.ObjectId,
-        ref:"todoModel",
-        require:true
-    }
+    // todo:{
+    //     type:mongoose.Schema.ObjectId,
+    //     ref:"todoModel",
+    //     require:true
+    // }
 });
 
 const taskModel=mongoose.model("taskModel",taskSchema);
