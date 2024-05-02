@@ -1,15 +1,19 @@
 import { useState } from "react";
 import "./Todomodel.css";
 
-const TodoModel = () => {
+// eslint-disable-next-line react/prop-types
+const TodoModel = ({onSubmit}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [task, setTask] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setTask("");
-    setIsOpen(!isOpen);
-    // Add your task submission logic here
+    if(task) {
+      const Tododata = {task};
+      onSubmit(Tododata);
+      setTask("");
+    }
+    togglePopup();
   };
 
   const togglePopup = () => {
@@ -17,7 +21,7 @@ const TodoModel = () => {
   };
 
   const togglePopupDelete = () => {
-    setIsOpen(!isOpen);
+    setIsOpen(false);
   };
 
   return (
