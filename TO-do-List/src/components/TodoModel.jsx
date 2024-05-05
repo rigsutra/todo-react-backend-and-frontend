@@ -1,15 +1,16 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
 import "./Todomodel.css";
 
-// eslint-disable-next-line react/prop-types
-const TodoModel = ({onSubmit}) => {
+const TodoModel = ({ onSubmit, onComplete, onDelete }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [task, setTask] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if(task) {
-      const Tododata = {task};
+    // Close the popup before handling submission
+    if (task) {
+      const Tododata = { task };
       onSubmit(Tododata);
       setTask("");
     }
@@ -20,8 +21,9 @@ const TodoModel = ({onSubmit}) => {
     setIsOpen(!isOpen);
   };
 
-  const togglePopupDelete = () => {
+  const handleClear = () => {
     setIsOpen(false);
+    setTask("");
   };
 
   return (
@@ -29,40 +31,40 @@ const TodoModel = ({onSubmit}) => {
       <button className="AddTask-Button" onClick={togglePopup}>
         Add Task
       </button>
-      <div>
-        {isOpen && (
-          <div className="todo-card">
-            <form className="add-task-form" onSubmit={handleSubmit}>
-              <h2 className="add-task">Enter the Task</h2>
-              <label htmlFor="taskname" className="task-label">
-                Task Name
-              </label>
-              <input
-                type="text"
-                placeholder="Enter the Task"
-                required
-                value={task}
-                onChange={(e) => setTask(e.target.value)}
-                className="task-input"
-              />
-              <div className="button-container">
-                <button type="submit" className="submit-button">
-                  Ok
-                </button>
-                <button
-                  type="button"
-                  onClick={togglePopupDelete}
-                  className="delete-button"
-                >
-                  Delete
-                </button>
-              </div>
-            </form>
-          </div>
-        )}
-      </div>
+      {isOpen && (
+        <div className="todo-card">
+          <form className="add-task-form" onSubmit={handleSubmit}>
+            <h2 className="add-task">Enter the Task</h2>
+            <label htmlFor="taskname" className="task-label">
+              Task Name
+            </label>
+            <input
+              type="text"
+              placeholder="Enter the Task"
+              required
+              value={task}
+              onChange={(e) => setTask(e.target.value)}
+              className="task-input"
+            />
+            <div className="button-container">
+              <button type="submit" className="submit-button">
+                Ok
+              </button>
+              <button onClick={handleClear} className="delete-button">
+                Clear
+              </button>
+            </div>
+          </form>
+        </div>
+      )}
     </>
   );
+};
+
+TodoModel.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+  onComplete: PropTypes.func.isRequired,
+  onDelete: PropTypes.func.isRequired,
 };
 
 export default TodoModel;

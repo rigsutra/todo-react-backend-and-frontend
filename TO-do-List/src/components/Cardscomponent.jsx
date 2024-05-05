@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Cardscomponent.css";
-import PopupForm from "./PopupForm";
+import PopupForm from "./PopupForm.jsx";
 import TodoModel from "./TodoModel.jsx"; // Import the TodoModel component
 
 const Cardscomponent = () => {
@@ -42,12 +42,13 @@ const Cardscomponent = () => {
               <h3 className="card-description-input">
                 About: {task.description}
               </h3>
-              <p className="card-status-select">Status:</p>
+              <p className="card-status-select">Status: {task.status}</p>
             </div>
             <div className="card-buttons">
               <button
                 className="btn btn-secondary"
                 onClick={handleOpen}
+                disabled={task.status === "complete"}
               >
                 Open
               </button>
@@ -63,7 +64,7 @@ const Cardscomponent = () => {
       </div>
 
       {isOpen && (
-        <TodoModel onClose={handleClose} />
+        <TodoModel onClose={handleClose} task={tasks[tasks.length-1]} />
       )}
     </div>
   );
