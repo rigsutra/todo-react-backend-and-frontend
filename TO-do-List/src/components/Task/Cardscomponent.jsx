@@ -2,7 +2,7 @@ import {  useState } from "react";
 import "./Cardscomponent.css";
 import PopupForm from "./PopupForm.jsx";
 import TodoModel from "./TodoModel.jsx";
-import axios from "axios";
+
 
 const Cardscomponent = () => {
   
@@ -40,21 +40,21 @@ const Cardscomponent = () => {
   };
 
   // Post a new task when the "Remove" button is clicked
-  const newTask = { title: "New Task", description: "Description of the new task" };
-  axios.post("http://localhost:4000/task/createTask", newTask)
-    .then((response) => {
-      console.log(response); // Log the response data to the console
-      if (response.data.success) {
-        // If the task was successfully created, add it to the tasks state
-        const createdTask = response.data.task;
-        setTasks([...tasks, createdTask]);
-      } else {
-        console.error("Error creating task:", response.data.message);
-      }
-    })
-    .catch((error) => {
-      console.error("Error creating task:", error);
-    });
+  // const newTask = { title: "New Task", description: "Description of the new task" };
+  // axios.post("http://localhost:4000/task/createTask", newTask)
+  //   .then((response) => {
+  //     console.log(response); // Log the response data to the console
+  //     if (response.data.success) {
+  //       // If the task was successfully created, add it to the tasks state
+  //       const createdTask = response.data.task;
+  //       setTasks([...tasks, createdTask]);
+  //     } else {
+  //       console.error("Error creating task:", response.data.message);
+  //     }
+  //   })
+  //   .catch((error) => {
+  //     console.error("Error creating task:", error);
+  //   });
 
   return (
     <div className="container">

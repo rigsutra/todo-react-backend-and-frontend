@@ -1,6 +1,7 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
 import "./Todomodel.css";
+import axios from "axios";
 
 
 const TodoModel = ({ onSubmit }) => {
@@ -9,6 +10,7 @@ const TodoModel = ({ onSubmit }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    axios.post("http://localhost:4000/todo/createTodo")
     // Close the popup before handling submission
     if (task) {
       const Tododata = { task };
@@ -17,6 +19,8 @@ const TodoModel = ({ onSubmit }) => {
     }
     togglePopup();
   };
+
+
 
  
 

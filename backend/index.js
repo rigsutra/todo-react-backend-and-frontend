@@ -28,8 +28,7 @@ app.use(cors(
 
 
 dbConnect();
-// app.use("/todo",todoRouter);
-// app.use("/task",taskRouter);
+app.use("/todo",todoRouter);
 app.use("/user", userRouter);
 app.use("/task",taskRouter);
 
