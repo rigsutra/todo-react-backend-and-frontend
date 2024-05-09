@@ -30,60 +30,59 @@ const Signup = () => {
         console.error("Error:", error);
       });
   };
+
   return (
     <div className="signup-container">
-      <form className="sign-up-form" onSubmit={handleClick}>
-        <div className="SignUp">
-          <h3 className="Signup-name">SignUp</h3>
-          <div className="line"></div>
+      <div className="signup-card">
+        <form className="sign-up-form" onSubmit={handleClick}>
+          <div className="SignUp">
+            <h3 className="Signup-name">SignUp</h3>
+            <div className="line"></div>
 
-          <label htmlFor="Username">Username</label>
-          <input
-            value={Username}
-            onChange={(e) => setUsername(e.target.value)}
-            type="text"
-            placeholder="Username"
-          />
+            <label htmlFor="Username">Username</label>
+            <input
+              value={Username}
+              onChange={(e) => setUsername(e.target.value)}
+              type="text"
+              placeholder="Username"
+            />
 
-          <label htmlFor="email">Email</label>
+            <label htmlFor="email">Email</label>
+            <input
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              type="email"
+              placeholder="Email"
+            />
 
-          <input
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            type="email"
-            placeholder="Email"
-          />
+            <label htmlFor="password">Password</label>
+            <input
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              type="password"
+              placeholder="password"
+            />
 
-          <label htmlFor="password">Password</label>
+            <label htmlFor="password">confirmPassword</label>
+            <input
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              type="password"
+              placeholder="Repassword"
+            />
 
-          <input
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            type="password"
-            placeholder="password"
-          />
+            <div>
+              <button type="submit">Sign up</button>
+            </div>
 
-          <label htmlFor="password">confirmPassword</label>
-
-          <input
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            type="password"
-            placeholder="Repassword"
-          />
-
-          <div>
-            <button type="submit">Sign up</button>
+            <p>
+              Already have an Account? <Link to="/signin">SignIn</Link>
+            </p>
           </div>
-
-          <p>
-            Already have an Account? <Link to="/signin">SignIn</Link>
-          </p>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
   );
 };
 
 export default Signup;
-

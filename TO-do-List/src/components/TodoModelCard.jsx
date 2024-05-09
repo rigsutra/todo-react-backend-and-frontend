@@ -1,8 +1,12 @@
 import { useState } from "react";
-import TodoModel from "./TodoModel";
+import TodoModel from "./TodoModel.jsx";
+import "./TodomodelCard.css";
+import { useNavigate } from "react-router-dom"; // Corrected import statement
 
 const TodoModelCard = () => {
   const [todoList, setTodoList] = useState([]);
+
+  const Navigate = useNavigate();
 
   function handleTodoSubmit(Tododata) {
     // Ensure each task has a 'completed' property initialized to false
@@ -10,6 +14,10 @@ const TodoModelCard = () => {
     setTodoList([...todoList, newTodo]);
     console.log("New todo added:", newTodo);
     console.log("Updated todoList:", todoList);
+  }
+
+  function OpenTask() {
+    Navigate("/Cardscomponent");
   }
 
   function handleTaskComplete(index) {
@@ -31,25 +39,25 @@ const TodoModelCard = () => {
   }
 
   return (
-    <div className="container">
-      <h2 className="add-task-button">
-        <TodoModel onSubmit={handleTodoSubmit} />
-      </h2>
-      <div className="card-details">
+    <div>
+      <div className="add-task-card">
+        <h2 className="add-task"><TodoModel onSubmit={handleTodoSubmit} /></h2>
+      </div>
+      <div className="task-cards">
         {todoList.map((todo, index) => (
-          <div key={index}>
+          <div className="task" key={index}>
             <h2
-              style={{
-                textDecoration: todo.completed ? "line-through" : "none",
-              }}
+              className={todo.completed ? "completed-task" : ""}
+              onClick={() => handleTaskComplete(index)}
             >
               {todo.task}
             </h2>
-            <div>
-              <button onClick={() => handleTaskComplete(index)}>
+            <div className="button-container">
+              <button className="complete-button" onClick={() => handleTaskComplete(index)}>
                 {todo.completed ? "Undo" : "Complete"}
               </button>
-              <button onClick={() => handleTaskDelete(index)}>Delete</button>
+              <button className="edit-button" onClick={OpenTask}>open</button>
+              <button className="delete-button" onClick={() => handleTaskDelete(index)}>Delete</button>
             </div>
           </div>
         ))}

@@ -1,0 +1,88 @@
+/* TodomodelCard.css */
+.add-task-card {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  max-width: 400px;
+  margin: 20px auto; /* Add margin for separation */
+}
+
+.task-cards {
+  display: grid;
+  gap: 20px;
+  max-width: 400px;
+  margin: 0 auto; /* Center task cards */
+}
+
+/* Other styles remain the same */
+/* TodomodelCard.css */
+.todo-card {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.add-task {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.card-details {
+  display: grid;
+  gap: 15px;
+}
+
+.task {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.task h2 {
+  font-size: 18px;
+  margin: 0;
+  cursor: pointer;
+}
+
+.task .button-container {
+  display: flex;
+  gap: 10px;
+}
+
+.complete-button,
+.delete-button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.complete-button {
+  background-color: #007bff;
+  color: #fff;
+  
+}
+
+.delete-button {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.complete-button:hover,
+.delete-button:hover {
+  background-color: #0056b3;
+}
+
+.completed-task {
+  text-decoration: line-through;
+}

@@ -24,10 +24,16 @@ const userSchema=new mongoose.Schema({
        
     },
 
-    // todo:[{
-    //     type:mongoose.Schema.ObjectId,
-    //     ref:"todoModel"
-    // }]
+    // tokens : [
+    //     {
+    //         token:{type:String,require:true}
+    //     }
+    // ],
+    
+    todo:[{
+        type:mongoose.Schema.ObjectId,
+        ref:"todoModel"
+    }]
 
 },{ collection: "Signup" });
 

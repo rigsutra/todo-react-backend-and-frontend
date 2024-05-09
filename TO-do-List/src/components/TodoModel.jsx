@@ -2,7 +2,8 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 import "./Todomodel.css";
 
-const TodoModel = ({ onSubmit, onComplete, onDelete }) => {
+
+const TodoModel = ({ onSubmit }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [task, setTask] = useState("");
 
@@ -16,6 +17,8 @@ const TodoModel = ({ onSubmit, onComplete, onDelete }) => {
     }
     togglePopup();
   };
+
+ 
 
   const togglePopup = () => {
     setIsOpen(!isOpen);
@@ -47,7 +50,7 @@ const TodoModel = ({ onSubmit, onComplete, onDelete }) => {
               className="task-input"
             />
             <div className="button-container">
-              <button type="submit" className="submit-button">
+              <button  type="submit" className="submit-button">
                 Ok
               </button>
               <button onClick={handleClear} className="delete-button">
@@ -63,8 +66,6 @@ const TodoModel = ({ onSubmit, onComplete, onDelete }) => {
 
 TodoModel.propTypes = {
   onSubmit: PropTypes.func.isRequired,
-  onComplete: PropTypes.func.isRequired,
-  onDelete: PropTypes.func.isRequired,
 };
 
 export default TodoModel;

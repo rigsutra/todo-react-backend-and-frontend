@@ -34,24 +34,24 @@ exports.createTask=async(req,res)=>{
     try{
         const {title , description, todo}=req.body;
         
-        // if(!title || !todo){
-        //     return res.json({
-        //         success:false,
-        //         message:"title or todo can not be empty"
-        //     })
-        // }
+        if(!title || !todo){
+            return res.json({
+                success:false,
+                message:"title or todo can not be empty"
+            })
+        }
 
-        // let todos=await todoModel.findOne({todo:todo});
-        // if(!todo){
-        //     return res.json({
-        //         success:false,
-        //         message:"This todo doesnot exist"
-        //     })
-        // }
+        let todos=await todoModel.findOne({todo:todo});
+        if(!todo){
+            return res.json({
+                success:false,
+                message:"This todo doesnot exist"
+            })
+        }
 
         const data=await taskModel.create({title, description });//todo
 
-        // const updateTodo=await todoModel.findByIdAndUpdate(todo,{$push :{task:data_id}},{new:true});
+        const updateTodo=await todoModel.findByIdAndUpdate(todo,{$push :{task:data_id}},{new:true});
 
         return res.json({
             success:true,
