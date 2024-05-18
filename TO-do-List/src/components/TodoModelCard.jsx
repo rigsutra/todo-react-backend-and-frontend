@@ -1,12 +1,12 @@
 import { useState } from "react";
 import TodoModel from "./TodoModel.jsx";
 import "./TodomodelCard.css";
-import { useNavigate } from "react-router-dom"; // Corrected import statement
+//import { useNavigate } from "react-router-dom"; // Corrected import statement
 
 const TodoModelCard = () => {
   const [todoList, setTodoList] = useState([]);
 
-  const Navigate = useNavigate();
+  //const Navigate = useNavigate();
 
   function handleTodoSubmit(Tododata) {
     // Ensure each task has a 'completed' property initialized to false
@@ -16,9 +16,9 @@ const TodoModelCard = () => {
     console.log("Updated todoList:", todoList);
   }
 
-  function OpenTask() {
-    Navigate("/Cardscomponent");
-  }
+  // function OpenTask() {
+  //   Navigate("/Cardscomponent");
+  // }
 
   function handleTaskComplete(index) {
     const updatedTodo = [...todoList];
@@ -56,7 +56,7 @@ const TodoModelCard = () => {
               <button className="complete-button" onClick={() => handleTaskComplete(index)}>
                 {todo.completed ? "Undo" : "Complete"}
               </button>
-              <button className="edit-button" onClick={OpenTask}>open</button>
+              <button className="edit-button" >open</button>
               <button className="delete-button" onClick={() => handleTaskDelete(index)}>Delete</button>
             </div>
           </div>
@@ -67,3 +67,4 @@ const TodoModelCard = () => {
 };
 
 export default TodoModelCard;
+

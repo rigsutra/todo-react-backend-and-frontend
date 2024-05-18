@@ -1,10 +1,11 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Signup from "./components/Signup";
-import SignIn from "./components/SignIn";
-import Home from "./components/Home";
-import TodoModelCard from "./components/TodoModelCard";
-import Cardscomponent from "./components/Cardscomponent";
-import { CookiesProvider, useCookies } from 'react-cookie'
+import Signup from "./components/users/Signup";
+import SignIn from "./components/users/SignIn";
+import Home from "./components/users/Home";
+import TodoModelCard from "./components/TODO/TodoModelCard";
+import Cardscomponent from "./components/Task/Cardscomponent";
+import { CookiesProvider, useCookies } from 'react-cookie';
+
 
 const App = () => {
   const [cookies, setCookie] = useCookies(['user']);
@@ -24,7 +25,7 @@ const App = () => {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/Signup" element={<Signup />} />
+            <Route path="./Signup" element={<Signup />} />
             <Route path="/TodoModelCard" element={<TodoModelCard onSubmit={handleTodoSubmit} />} />
             <Route path="/Cardscomponent" element={<Cardscomponent />} />
           </Routes>
