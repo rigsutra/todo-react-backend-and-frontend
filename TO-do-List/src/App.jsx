@@ -1,40 +1,32 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Signup from "./components/users/Signup";
-import SignIn from "./components/users/SignIn";
-import Home from "./components/users/Home";
-import TodoModelCard from "./components/TODO/TodoModelCard";
-import Cardscomponent from "./components/Task/Cardscomponent";
-import { CookiesProvider, useCookies } from 'react-cookie';
+import { Routes, Route } from "react-router-dom";
+import Header from "./Header-footer/Header";
+import Footer from "./Header-footer/Footer";
+import Home from "./Pages/Home";
+import SignIn from "./Pages/SignIn";
+import Signup from "./Pages/Signup";
+import TodoModelCard from "./components/TodoModelCard";
+import Cardscomponent from "./components/Cardscomponent";
+import { useState } from "react";
 
+function App() {
+  const [isLoggedin, setIsLoggedin] = useState(true);
 
-const App = () => {
-  const [cookies, setCookie] = useCookies(['user']);
-
-  const handleTodoSubmit = (Tododata) => {
-    // This function will handle the submission of task data
-    console.log("Task submitted:", Tododata);
-  };
-
-  function handleLogin(user) {
-    setCookie('user', user, { path: '/' });
-  }
-  
   return (
-    <CookiesProvider>
-      {cookies.user ? (
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="./Signup" element={<Signup />} />
-            <Route path="/TodoModelCard" element={<TodoModelCard onSubmit={handleTodoSubmit} />} />
-            <Route path="/Cardscomponent" element={<Cardscomponent />} />
-          </Routes>
-        </BrowserRouter>
-      ) : (
-        <SignIn onLogin={handleLogin} />
-      )}
-    </CookiesProvider>
+    <div>
+      <Header isLoggedin={isLoggedin} setIsLoggedin={setIsLoggedin} />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route
+          path="signin"
+          element={<SignIn setIsLoggedin={setIsLoggedin} />}
+        />
+        <Route path="signup" element={<Signup />} />
+        <Route path="todo" element={<TodoModelCard />} />
+        <Route path="card" element={<Cardscomponent />} />
+      </Routes>
+      <Footer isLoggedin={isLoggedin} />
+    </div>
   );
-};
+}
 
 export default App;

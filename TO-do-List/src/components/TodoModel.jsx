@@ -1,8 +1,7 @@
-import { useState } from "react";
+import  { useState } from "react";
 import PropTypes from "prop-types";
 import "./Todomodel.css";
 import axios from "axios";
-
 
 const TodoModel = ({ onSubmit }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -10,27 +9,18 @@ const TodoModel = ({ onSubmit }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post("http://localhost:4000/todo/createTodo",{
-      task
-    }).then((response) => {
-      if(response.data.success == true){
-        console.log(response.data.message);
-      }
-  }).catch((error) => {
-    console.error("error" , error);
-  })
-    // Close the popup before handling submission
-    if (task) {
-      const Tododata = { task };
-      onSubmit(Tododata);
-      setTask("");
-    }
-    togglePopup();
+    axios.post("http://localhost:4000/todo/createTodo", { task })
+      .then((response) => {
+        if (response.data.success) {
+          onSubmit({ task });
+          setTask("");
+          togglePopup();
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
   };
-
-
-
- 
 
   const togglePopup = () => {
     setIsOpen(!isOpen);
@@ -62,7 +52,7 @@ const TodoModel = ({ onSubmit }) => {
               className="task-input"
             />
             <div className="button-container">
-              <button  type="submit" className="submit-button">
+              <button type="submit" className="submit-button">
                 Ok
               </button>
               <button onClick={handleClear} className="delete-button">
