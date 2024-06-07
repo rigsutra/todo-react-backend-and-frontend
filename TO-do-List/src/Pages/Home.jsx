@@ -1,9 +1,10 @@
-import TodoModelCard from "../components/TodoModelCard";
+/* eslint-disable react/prop-types */
+import Todo from "../components/Todo";
 
 const Home = () => {
   return (
     <div>
-      <TodoModelCard />
+      <Todo />
     </div>
   );
 };

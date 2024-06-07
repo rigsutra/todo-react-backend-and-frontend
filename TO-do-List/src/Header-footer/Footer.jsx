@@ -4,7 +4,7 @@ import "./Footer.css"; // Importing CSS file for styling
 const Footer = ({ isLoggedin }) => {
   return (
     <footer className="footer">
-      {isLoggedin && (
+      {!isLoggedin && (
         <div className="footer-content">
           <h5>Todo List App</h5>
           <p>&copy; 2024 Todo List App</p>

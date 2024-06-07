@@ -1,38 +1,45 @@
-import { useState } from 'react';
-import './popup.css';
-import axios from 'axios';
+import { useState } from "react";
+import "./Taskpopupcss.css";
 
 // eslint-disable-next-line react/prop-types
-const PopupForm = ({ onSubmit }) => {
+const Taskpopup = ({ onSubmit }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
 
   const togglePopup = () => {
     setIsOpen(!isOpen);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    axios
-      .post("http://localhost:4000/task/createTask", {
-      title,
-      description
-    }).then((response) => {
-      if (response.data.success == true) {
-        console.log(response.data.message);
-      }
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-    });
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   axios
+  //     .post("http://localhost:4000/task/createTask", {
+  //     title,
+  //     description
+  //   }).then((response) => {
+  //     if (response.data.success == true) {
+  //       console.log(response.data.message);
+  //     }
+  //   })
+  //   .catch((error) => {
+  //     console.error("Error:", error);
+  //   });
+  //   const taskData = { title, description };
+  //   onSubmit(taskData);
+  //   setTitle('');
+  //   setDescription('');
+  //   togglePopup();
+  // };
+
+  function handleSumbit(event) {
+    event.preventDefault();
     const taskData = { title, description };
     onSubmit(taskData);
-    setTitle('');
-    setDescription('');
+    setTitle("");
+    setDescription("");
     togglePopup();
-  };
-
+  }
 
   return (
     <>
@@ -43,7 +50,7 @@ const PopupForm = ({ onSubmit }) => {
         <div className="overlay-container">
           <div className="popup-box">
             <h2>Task Details</h2>
-            <form className="form-container" onSubmit={handleSubmit}>
+            <form className="form-container" onSubmit={handleSumbit}>
               <label className="form-label" htmlFor="taskName">
                 Task Name:
               </label>
@@ -65,14 +72,11 @@ const PopupForm = ({ onSubmit }) => {
                 placeholder="Enter Description"
                 id="description"
                 name="description"
-                required
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
               />
               <div className="buttons-popup">
-                <button className="btn-submit" type="submit">
-                  Submit
-                </button>
+                <button className="btn-submit">Ok</button>
                 <button className="btn-close-popup" onClick={togglePopup}>
                   Close
                 </button>
@@ -85,4 +89,4 @@ const PopupForm = ({ onSubmit }) => {
   );
 };
 
-export default PopupForm;
+export default Taskpopup;

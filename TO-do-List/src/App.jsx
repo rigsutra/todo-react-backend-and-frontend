@@ -4,12 +4,12 @@ import Footer from "./Header-footer/Footer";
 import Home from "./Pages/Home";
 import SignIn from "./Pages/SignIn";
 import Signup from "./Pages/Signup";
-import TodoModelCard from "./components/TodoModelCard";
-import Cardscomponent from "./components/Cardscomponent";
+import Todo from "./components/Todo";
+import Task from "./components/Task";
 import { useState } from "react";
 
 function App() {
-  const [isLoggedin, setIsLoggedin] = useState(true);
+  const [isLoggedin, setIsLoggedin] = useState(false);
 
   return (
     <div>
@@ -21,8 +21,8 @@ function App() {
           element={<SignIn setIsLoggedin={setIsLoggedin} />}
         />
         <Route path="signup" element={<Signup />} />
-        <Route path="todo" element={<TodoModelCard />} />
-        <Route path="card" element={<Cardscomponent />} />
+        <Route path="todo" element={<Todo />} />
+        <Route path="task" element={<Task />} />
       </Routes>
       <Footer isLoggedin={isLoggedin} />
     </div>

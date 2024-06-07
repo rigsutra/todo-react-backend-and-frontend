@@ -12,6 +12,7 @@ const Signup = () => {
   const [userdata, setUserdata] = useState({
     firstname: "",
     lastname: "",
+    username: "",
     email: "",
     password: "",
     confirmPassword: "",
@@ -52,6 +53,7 @@ const Signup = () => {
     } else {
       const dataall = userdata;
       console.log(dataall);
+      toast.success("Signup Successfully");
       navigate("/signin");
     }
   }
@@ -64,7 +66,7 @@ const Signup = () => {
 
         <div className="flex flex-row">
           <label>
-            <p className="text-left ml-3 mt-4">First Name</p>
+            <p className="text-left ml-1 mt-3">First Name</p>
             <input
               value={userdata.firstname}
               onChange={handleForm}
@@ -76,7 +78,7 @@ const Signup = () => {
           </label>
 
           <label>
-            <p className="text-left ml-3 mt-4">Last Name</p>
+            <p className="text-left ml-1 mt-3">Last Name</p>
             <input
               value={userdata.lastname}
               onChange={handleForm}
@@ -89,7 +91,19 @@ const Signup = () => {
         </div>
 
         <label>
-          <p className="text-left ml-3 mt-4">Email</p>
+          <p className="text-left ml-1 mt-3">Username</p>
+          <input
+            value={userdata.username}
+            onChange={handleForm}
+            required
+            type="text"
+            placeholder="Username"
+            name="username"
+          />
+        </label>
+
+        <label>
+          <p className="text-left ml-1 mt-3">Email</p>
           <input
             value={userdata.email}
             onChange={handleForm}
@@ -102,7 +116,7 @@ const Signup = () => {
 
         <div className="flex flex-row">
           <label>
-            <p className="text-left ml-3 mt-4">Password</p>
+            <p className="text-left ml-1 mt-3">Password</p>
             <input
               value={userdata.password}
               onChange={handleForm}
@@ -114,7 +128,7 @@ const Signup = () => {
           </label>
 
           <label>
-            <p className="text-left ml-3 mt-4">Confirm Password</p>
+            <p className="text-left ml-1 mt-3">Confirm Password</p>
             <input
               value={userdata.confirmPassword}
               onChange={handleForm}
@@ -140,5 +154,4 @@ const Signup = () => {
     </div>
   );
 };
-
 export default Signup;

@@ -8,14 +8,8 @@ const Header = (props) => {
   const setIsLoggedin = props.setIsLoggedin;
 
   return (
-    <div className="flex   ml-0 mr-0 justify-evenly bg-green-300">
-      <img
-        className="ml-[-130px]"
-        src={logo}
-        width={150}
-        height={100}
-        alt="Todo Logo"
-      />
+    <div className="flex p-1 ml-0 mr-0 justify-evenly bg-green-300">
+      <img src={logo} width={160} alt="Todo Logo" />
 
       <nav>
         <ul className="flex flex-row m-5 gap-10 ">
@@ -33,14 +27,14 @@ const Header = (props) => {
 
       <div className="flex flex-row m-2 gap-4">
         {!isLoggedin && (
-          <Link to="/signin">
+          <Link to="signin">
             <button className="bg-richblack-800 py-[8px] px-[12px] rounded-[8px] border border-richblack-700 hover:bg-green-400">
               Login
             </button>
           </Link>
         )}
         {!isLoggedin && (
-          <Link to="/signup">
+          <Link to="signup">
             <button className="bg-richblack-800 py-[8px] px-[12px] rounded-[8px] border border-richblack-700 hover:bg-green-400">
               Sign up
             </button>

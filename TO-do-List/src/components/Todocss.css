@@ -5,14 +5,13 @@
   padding: 2rem;
 }
 
-
-.card-details{
+.card-details {
   display: flex;
   flex-direction: column;
 }
 
 .add-task-button {
-  background-color: #007bff;
+  background-color: rgb(74 222 128);
   color: #fff;
   border: none;
   border-radius: 0.25rem;
@@ -49,24 +48,15 @@
   border-radius: 0.25rem;
   font-size: 1rem;
   border: none;
-
 }
 
-.card-name-input{
+.card-name-input {
   font-size: xx-large;
   text-align: left;
 }
 
-.card-status-select {
-  margin-bottom: 0.5rem;
-  padding: 0.5rem;
-  font-size: 1rem;
-  color: #6c757d;
-  text-align: left;
-}
-
 .btn-secondary {
-  background-color: #007bff;
+  background-color: rgb(74 222 128);
   color: #fff;
   border: none;
   border-radius: 0.25rem;
@@ -78,13 +68,12 @@
 }
 
 .btn-secondary:hover {
-  background-color: #007bff;
+  background-color: rgb(74 222 128);
 }
 
-
-.card-buttons{
- display: flex;
- flex-direction: row;
- margin: 5px;
- row-gap: 10px;
+.card-buttons {
+  display: flex;
+  flex-direction: row;
+  margin: 5px;
+  row-gap: 10px;
 }

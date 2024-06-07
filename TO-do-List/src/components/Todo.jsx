@@ -1,11 +1,11 @@
-import {  useState } from "react";
-import "./Cardscomponent.css";
-import PopupForm from "./PopupForm.jsx";
-import TodoModel from "./TodoModel.jsx";
-
+import { useState } from "react";
+import "./Todocss.css";
+import { useNavigate } from "react-router-dom";
+import PopupForm from "./Todo-Popup.jsx";
+import TodoModel from "./Taskpopup.jsx";
 
 const Cardscomponent = () => {
-  
+  const navigate = useNavigate();
   const [tasks, setTasks] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -24,8 +24,6 @@ const Cardscomponent = () => {
   const handleTaskSubmission = (taskData) => {
     setTasks([...tasks, taskData]);
   };
-
-  
 
   const handleClose = () => {
     setIsOpen(false);
@@ -56,6 +54,10 @@ const Cardscomponent = () => {
   //     console.error("Error creating task:", error);
   //   });
 
+  function handleTaskOpen() {
+    navigate("/task");
+  }
+
   return (
     <div className="container">
       <h2 className="add-task-button">
@@ -67,31 +69,25 @@ const Cardscomponent = () => {
           <div key={index} className="card-body">
             <div className="card-details">
               <h2 className="card-name-input">{task.title}</h2>
-              <h3 className="card-description-input">
-                About: {task.description}
-              </h3>
-              <p className="card-status-select">Status: {task.status}</p>
             </div>
             <div className="card-buttons">
-              <button
-                className="btn btn-secondary"
-                
-                disabled={task.status === "complete"}
-              >
+              <button className="btn btn-secondary" onClick={handleTaskOpen}>
                 Open
               </button>
               <button
                 className="btn btn-secondary"
                 onClick={() => handleRemoveTask(index)}
               >
-                Remove
+                Done
               </button>
             </div>
           </div>
         ))}
       </div>
 
-      {isOpen && <TodoModel onClose={handleClose} task={tasks[tasks.length - 1]} />}
+      {isOpen && (
+        <TodoModel onClose={handleClose} task={tasks[tasks.length - 1]} />
+      )}
     </div>
   );
 };

@@ -7,7 +7,7 @@
   background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
-  align-items: center;
+  text-align: center;
 }
 
 .popup-box {
@@ -51,12 +51,12 @@ h2 {
   border: none;
   border-radius: 0.25rem;
   cursor: pointer;
-  background-color: #007bff;
+  background-color: rgb(74 222 128);
   margin: 5px;
 }
 
 .btn-open-popup {
-  background-color: #007bff;
+  background-color: rgb(74 222 128);
   color: #fff;
   border: none;
   border-radius: 0.25rem;
@@ -64,9 +64,8 @@ h2 {
   cursor: pointer;
 }
 
-.buttons-popup{
+.buttons-popup {
   display: flex;
   flex-direction: row;
   padding: 5px;
-  
 }
