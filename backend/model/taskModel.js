@@ -17,7 +17,7 @@ const taskSchema=new mongoose.Schema({
     },
 
     todo:{
-        type:mongoose.Schema.ObjectId,
+        type:mongoose.Schema.Types.ObjectId,
         ref:"todoModel",
         require:true
     }

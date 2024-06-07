@@ -5,7 +5,7 @@ const dotenv = require("dotenv");
 const cors=require('cors')
 
 dotenv.config();
-const userModel = require("./model/userModel.js");
+const todoRouter =require("./router/todoRouter.js");
 const userRouter=require("./router/userRouter.js");
 const taskRouter=require("./router/taskRouter.js");
 const dbConnect=require("./config/dataBase");
@@ -28,7 +28,7 @@ app.use(cors(
 
 
 dbConnect();
-// app.use("/todo",todoRouter);
+app.use("/todo",todoRouter);
 app.use("/user", userRouter);
 app.use("/task",taskRouter);
 
