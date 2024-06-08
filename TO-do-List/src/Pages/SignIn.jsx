@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Signin.css";
 import { toast } from "react-hot-toast";
+import axios from "axios";
 
 // eslint-disable-next-line react/prop-types
 const SignIn = ({ setIsLoggedin }) => {
@@ -22,31 +23,32 @@ const SignIn = ({ setIsLoggedin }) => {
     });
   }
 
-  function handleSubmit(event) {
-    event.preventDefault();
-    setIsLoggedin(true);
-    toast.success("Signed");
-    navigate("/");
-  }
+  // function handleSubmit(event) {
+  //   event.preventDefault();
+  //   setIsLoggedin(true);
+  //   toast.success("Signed");
+  //   navigate("/");
+  // }
 
-  // const navigate = useNavigate();
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   axios
-  //     .post("http://localhost:4000/user/Signin", { email, password })
-  //     .then((response) => {
-  //       if (response.data.success) {
-  //         onLogin(response.data.user); // Pass user data to the parent component
-  //         navigate("/");
-  //       } else {
-  //         console.log(response.data.message);
-  //       }
-  //     })
-  //     .catch((error) => {
-  //       console.log("Error", error);
-  //     });
-  // };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axios
+      .post("http://localhost:4000/user/Signin", formData)
+      .then((response) => {
+        if (response.data.success === true) {
+          setIsLoggedin(true);
+          // onLogin(response.data.user); // Pass user data to the parent component
+          toast.success("Signed");
+          navigate("/");
+        } else {
+          console.log(response.data.message);
+          toast.error(response.data.message);
+        }
+      })
+      .catch((error) => {
+        console.log("Error", error);
+      });
+  };
 
   return (
     <div className="SignIn">

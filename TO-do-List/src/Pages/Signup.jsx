@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 import { Link } from "react-router-dom";
-// import axios from "axios";
+import axios from "axios";
 import "./Signup.css";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
@@ -26,37 +26,39 @@ const Signup = () => {
     }));
   }
 
-  // const handleClick = (e) => {
-  //   e.preventDefault();
-  //   axios
-  //     .post("http://localhost:4000/user/Signup", {
-  //       userdata,
-  //     })
-  //     .then((response) => {
-  //       if (response.data.success == true) {
-  //         console.log(response.data.message);
-  //         navigate("/Signin");
-  //       } else {
-  //         console.log(response.data.message);
-  //       }
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error:", error);
-  //     });
-  // };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axios
+      .post("http://localhost:4000/user/Signup", {
+        userdata,
+      })
+      .then((response) => {
+        if (response.data.success == true) {
+          console.log(response.data.message);
+          toast.success(response.data.message);
+          navigate("/Signin");
+        } else {
+          console.log(response.data.message);
+          toast.error(response.data.message);
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  };
 
-  function handleSubmit(event) {
-    event.preventDefault();
-    if (userdata.password !== userdata.confirmPassword) {
-      toast.error("password not match");
-      return;
-    } else {
-      const dataall = userdata;
-      console.log(dataall);
-      toast.success("Signup Successfully");
-      navigate("/signin");
-    }
-  }
+  // function handleSubmit(event) {
+  //   event.preventDefault();
+  //   if (userdata.password !== userdata.confirmPassword) {
+  //     toast.error("password not match");
+  //     return;
+  //   } else {
+  //     const dataall = userdata;
+  //     console.log(dataall);
+  //     toast.success("Signup Successfully");
+  //     navigate("/signin");
+  //   }
+  // }
 
   return (
     <div className="signup-card">
