@@ -29,15 +29,14 @@ const Signup = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:4000/user/Signup", {
-        userdata,
-      })
+      .post("/user/Signup", userdata)
       .then((response) => {
         if (response.data.success == true) {
-          console.log(response.data.message);
+          console.log(userdata);
           toast.success(response.data.message);
           navigate("/Signin");
         } else {
+          console.log(userdata);
           console.log(response.data.message);
           toast.error(response.data.message);
         }

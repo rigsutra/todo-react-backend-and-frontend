@@ -2,7 +2,7 @@ const userModel = require("../model/userModel");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
-// signUp controller
+// SignUp controller
 exports.SignUp = async (req, res) => {
   try {
     const { firstname, lastname, username, email, password, confirmPassword } =
@@ -18,7 +18,7 @@ exports.SignUp = async (req, res) => {
     ) {
       return res.json({
         success: false,
-        message: "Please fill in all field",
+        message: "Please fill in all fields",
       });
     }
 
@@ -67,7 +67,7 @@ exports.SignUp = async (req, res) => {
   }
 };
 
-// login controller
+// SignIn controller
 exports.Signin = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -98,6 +98,7 @@ exports.Signin = async (req, res) => {
 
       return res.cookie("token", token, option).status(200).json({
         success: true,
+        token: token, // Send the token in the response
         user,
         message: "user login",
       });
@@ -114,7 +115,6 @@ exports.Signin = async (req, res) => {
     });
   }
 };
-
 exports.updatePassword = async (req, res) => {
   try {
     const { password, newPassword } = req.body;
@@ -135,7 +135,7 @@ exports.updatePassword = async (req, res) => {
     if (!bcrypt.compare(user.password, password)) {
       return res.json({
         success: false,
-        message: "incorrect password",
+        message: "Incorrect password",
       });
     }
 

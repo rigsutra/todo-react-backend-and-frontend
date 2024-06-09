@@ -14,7 +14,7 @@ const Header = (props) => {
       <nav>
         <ul className="flex flex-row m-5 gap-10 ">
           <li className="active:hover:bg-green-700 rounded-sm">
-            <NavLink to="/">Home</NavLink>
+            <NavLink to="/home">Home</NavLink>
           </li>
           <li className="active:hover:bg-green-400">
             <NavLink to="/About">About</NavLink>

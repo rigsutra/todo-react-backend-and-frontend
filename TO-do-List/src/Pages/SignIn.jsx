@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Signin.css";
 import { toast } from "react-hot-toast";
-import axios from "axios";
+import axios from "../axiosConfig";
 
 // eslint-disable-next-line react/prop-types
 const SignIn = ({ setIsLoggedin }) => {
@@ -33,19 +33,22 @@ const SignIn = ({ setIsLoggedin }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:4000/user/Signin", formData)
+      .post("/user/Signin", formData)
       .then((response) => {
         if (response.data.success === true) {
           setIsLoggedin(true);
+          localStorage.setItem("token", response.data.token);
+          console.log(response.data.token);
           // onLogin(response.data.user); // Pass user data to the parent component
           toast.success("Signed");
-          navigate("/");
+          navigate("/home");
         } else {
           console.log(response.data.message);
           toast.error(response.data.message);
         }
       })
       .catch((error) => {
+        toast.error("Error signing");
         console.log("Error", error);
       });
   };

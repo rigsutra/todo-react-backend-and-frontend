@@ -30,7 +30,7 @@ exports.createTask = async (req, res) => {
   try {
     const { title, description, todo } = req.body;
 
-    if (!title || !todo) {
+    if (!title || !description) {
       return res.json({
         success: false,
         message: "title or todo can not be empty",

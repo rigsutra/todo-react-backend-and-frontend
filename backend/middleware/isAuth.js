@@ -1,35 +1,37 @@
-const jwt=require("jsonwebtoken")
+const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
-exports.auth=async(req,res,next)=>{
-    try{
-        const token=req.body.token || req.cookies.token ;
+exports.auth = async (req, res, next) => {
+  try {
+    // Get token from Authorization header or cookies
+    const authHeader = req.headers.authorization;
+    const token = (authHeader && authHeader.split(" ")[1]) || req.cookies.token;
 
-        if(!token){
-            return res.status(401).json({
-                success:false,
-                message:"token is not Found"
-            });
-        }
-
-        try{
-            const decode=jwt.verify(token,process.env.JWT_SECRET);
-            req.user=decode;
-
-        }  
-        catch(err){
-            res.status(401).json({
-                success:false,
-                message:"token is invalid"
-            })
-        }
-        next();
-
+    // If no token is found, return 401 Unauthorized
+    if (!token) {
+      return res.status(401).json({
+        success: false,
+        message: "Token not found",
+      });
     }
-    catch(err){
-        res.status(401).json({
-            success:false,
-            message:err.message
-        })
+
+    try {
+      // Verify the token using the secret key
+      const decoded = jwt.verify(token, process.env.JWT_SECRET);
+      req.user = decoded;
+      next(); // Proceed to the next middleware or route handler
+    } catch (err) {
+      // If token verification fails, return 401 Unauthorized
+      return res.status(401).json({
+        success: false,
+        message: "Token is invalid",
+      });
     }
-}
+  } catch (err) {
+    // If there is an error in the middleware, return 401 Unauthorized
+    return res.status(401).json({
+      success: false,
+      message: err.message,
+    });
+  }
+};

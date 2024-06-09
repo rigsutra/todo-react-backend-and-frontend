@@ -1,28 +1,31 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./Todocss.css";
 import { useNavigate } from "react-router-dom";
 import PopupForm from "./Todo-Popup.jsx";
 import TodoModel from "./Taskpopup.jsx";
+import axios from "../axiosConfig.js";
 
 const Cardscomponent = () => {
   const navigate = useNavigate();
-  const [tasks, setTasks] = useState([]);
+  const [todos, setTodo] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
 
-  // useEffect(() => {
-  //   // Fetch tasks when the component mounts
-  //   axios.get("http://localhost:4000/task/getAlltaskOfTodo")
-  //     .then((response) => {
-  //       console.log(response); // Log the response data to the console
-  //       setTasks(response.data.tasks); // Set the tasks state with the response data
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error fetching tasks:", error);
-  //     });
-  // }, []); // Empty dependency array to run only once when the component mounts
+  useEffect(() => {
+    // Fetch tasks when the component mounts
+    handletododata();
+  }, [todos]);
 
-  const handleTaskSubmission = (taskData) => {
-    setTasks([...tasks, taskData]);
+  const handletododata = async () => {
+    try {
+      const response = await axios.get("/todo/getTodo");
+      setTodo(response.data.data);
+    } catch (error) {
+      console.log("Error in fectching tododata", error);
+    }
+  };
+
+  const handleTaskSubmission = (todoData) => {
+    setTodo([...todos, todoData]);
   };
 
   const handleClose = () => {
@@ -31,9 +34,9 @@ const Cardscomponent = () => {
 
   const handleRemoveTask = (index) => {
     // Remove the task from the local state
-    const updatedTasks = [...tasks];
+    const updatedTasks = [...todos];
     updatedTasks.splice(index, 1);
-    setTasks(updatedTasks);
+    setTodo(updatedTasks);
     // Optionally, you can also remove the task from the server here
   };
 
@@ -65,10 +68,10 @@ const Cardscomponent = () => {
       </h2>
 
       <div className="card-container">
-        {tasks.map((task, index) => (
+        {todos.map((todo, index) => (
           <div key={index} className="card-body">
             <div className="card-details">
-              <h2 className="card-name-input">{task.title}</h2>
+              <h2 className="card-name-input">{todo.todoTitle}</h2>
             </div>
             <div className="card-buttons">
               <button className="btn btn-secondary" onClick={handleTaskOpen}>
@@ -86,7 +89,7 @@ const Cardscomponent = () => {
       </div>
 
       {isOpen && (
-        <TodoModel onClose={handleClose} task={tasks[tasks.length - 1]} />
+        <TodoModel onClose={handleClose} task={todos[todos.length - 1]} />
       )}
     </div>
   );
