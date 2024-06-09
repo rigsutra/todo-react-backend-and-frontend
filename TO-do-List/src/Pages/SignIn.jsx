@@ -23,13 +23,6 @@ const SignIn = ({ setIsLoggedin }) => {
     });
   }
 
-  // function handleSubmit(event) {
-  //   event.preventDefault();
-  //   setIsLoggedin(true);
-  //   toast.success("Signed");
-  //   navigate("/");
-  // }
-
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
